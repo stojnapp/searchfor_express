@@ -8,6 +8,7 @@
             <span v-if="backwhitestate" @click="back" class="backicon_white"></span>
           </slot>
           <span v-if="closestate" @click="close" class="closeicon"></span>
+          <span v-if="closewhitestate" @click="close" class="closeswhiteicon"></span>
         </slot>
       </div>
       <div class="title">
@@ -38,6 +39,10 @@
         default:false
       },
       closestate:{
+        type:Boolean,
+        default:false
+      },
+      closewhitestate:{
         type:Boolean,
         default:false
       },
@@ -129,6 +134,11 @@
         width 80px
         height 100%
         bg-image('./src/assets/img/fork')
+        background-size auto 32px
+      .closeswhiteicon
+        width 80px
+        height 100%
+        bg-image('./src/assets/img/close_white')
         background-size auto 32px
     .menu
       width 200px

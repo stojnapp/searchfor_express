@@ -53,16 +53,6 @@ new Vue({
           this.$store.commit('saveLogininfo',data1.loginResp.employee)
         }
       )
-
-    /*调类别*/
-    this.$store.dispatch('getGoodsType',{});
-    /*调材质*/
-    this.$store.dispatch('getGoodsType',{typeCode:'bale_texture'});
-    /*调用中国省区*/
-    this.$store.dispatch('searchArealist',{})
-      .then(res=>{
-        this.$store.commit('searchChinaArealist',res)
-      })
   },
   components: { App },
   template: '<App/>'
