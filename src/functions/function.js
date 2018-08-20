@@ -14,6 +14,8 @@ import CommonParams from '../api/commonParams'
 import qs from 'qs';
 import Checks from './checkformat';
 import store from '../store/store'
+import Tools from '../functions/commonTools';
+
 const functions={
 
 
@@ -92,34 +94,23 @@ const functions={
 
   /*axios*/
   requestHttpMethods(url,data,commonParam=false,HttpMethod='post',config=AxiosConfig){
+    var loading=Tools.getTost('正在加载中...')
     let formatHttp=HttpMethod.toLowerCase();
     var formatDate=commonParam?Object.assign({},CommonParams,data):data;
     if(formatHttp=='get'){
       formatDate={params:formatDate};
     }
 
-    // if(formatHttp=='post'){
-    //   /*若header[Content-Type]: 'application/json'则不开启，若是application/x-www-form-urlencoded'则开启*/
-    //   if(!config.headers['Content-Type']=='application/json'){
-    //     formatDate = qs.stringify(formatDate);
-    //   }
-    // }
-
-
     /*拦截header头,在此处可以调用vuex里的值*/
-
-    // config.headers['timestamp']=this.gettimestap();
-    // config.headers['nonce']=functions.randomChar(32);
-    // config.headers['signature']=functions.getsignature(store.state.secretKey,config.headers['timestamp'],config.headers['nonce'],JSON.stringify(formatDate));
-    // config.headers['tokenId']='2a3aaf4426be4cd79539632e9e90361b';
-    // config.headers['userId']=store.state.userinfo.id;
+    config.headers['userId']=store.state.userinfo.id;
     var instance = Axios.create(config);
     let HttpSendType=formatHttp=='post'?instance.post:instance.get;
     return HttpSendType(url,formatDate).then(res=>{
+      loading.clear()
       return Promise.resolve(res.data)
     })
       .catch(err=>{
-        alert(err);
+        Tools.TestTost(err)
       })
   },
 

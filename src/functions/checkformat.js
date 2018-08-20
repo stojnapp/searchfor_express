@@ -78,17 +78,6 @@ const checkFormat={
 
   },
 
-  /*类别材质数据过滤*/
-  checkFormatGoods(arr){
-    var newArr=[];
-    for(let i=0;i<arr.length;i++){
-      newArr=newArr.concat({text:arr[i].itemName,value:arr[i].itemCode});
-    }
-    return newArr
-  }
-
-
-
 
 }
 

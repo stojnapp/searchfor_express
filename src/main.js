@@ -33,9 +33,7 @@ FastClick.attach(document.body)
 Vue.prototype.$bridge = JsBridg
 Vue.prototype.$http = Axios;
 Vue.prototype.$function=Functions;
-Vue.prototype.$check=CheckFormat;
 Vue.prototype.$Tools=Tools;
-Vue.prototype.$CommonApi=Commpn_api;
 
 Vue.config.productionTip = false
 /* eslint-disable no-new */
