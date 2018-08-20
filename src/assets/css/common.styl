@@ -1,0 +1,279 @@
+@import "var.styl"
+
+.box_item
+  background white
+  flex_all()
+  flex-pack-justify()
+
+.feldinput
+  border:none
+  text-align right
+  font-size 28px
+  position relative
+  z-index 1
+  &::placeholder
+    text-align right
+    font-size 24px
+    color #999
+ .feldinputlabel
+   position absolute
+   left 0px
+   top 0px
+   right 0px
+   bottom 0px
+   text-align right
+   z-index 100
+
+/*首页检索*/
+.screen-content
+  position fixed
+  z-index 100
+  background white
+  right 0px
+  bottom 0px
+  left 0px
+  display flex
+  align-items flex-start
+  flex-flow column nowrap
+  justify-content flex-start
+  .screen-center-content
+    flex 1
+    width 100%
+    overflow-y auto
+    bt-t(#d8d8d8)
+  .screen-bottom
+    width 100%
+    height 90px
+    display flex
+    flex-flow row nowrap
+    span
+      flex 1
+      height 90px
+      text-align center
+      line-height 90px
+      font-size 32px
+      &.reset
+        background #D8D8D8
+        color #666666
+      &.submitbtn
+        background #FE7621
+        color white
+
+.pic-list
+  display block
+  padding-top 20px
+  li
+    width 152px
+    height 152px
+    background #F5F5F5
+    float left
+    margin-bottom 20px
+    margin-right 20px
+    display flex
+    align-items center
+    justify-content center
+    flex-flow row nowrap
+    img
+      max-width 100%
+      max-height 100%
+
+.bottom-btn
+  height 98px
+  display flex
+  justify-content center
+  align-items center
+  background white
+  bt-t(#EDEDED)
+  span
+    flex 1
+    height 98px
+    display flex
+    justify-content center
+    align-items center
+    text-align center
+    position relative
+    &:nth-child(2n):before
+      content ""
+      position absolute
+      width 1px
+      left 0px
+      top: 30px
+      bottom 30px
+      background #E8E8E8
+    cite
+      line-height 40px
+      font-size 32px
+      color #FE7621
+      padding-left 20px
+    i
+      display inline-block
+      width 40px
+      height 40px
+      background-size auto 100%
+      &.claimOrder
+        bg-image('./src/assets/img/facesheet_claim')
+      &.audit-back
+        bg-image('./src/assets/img/facesheet_return')
+      &.audit-pass
+        bg-image('./src/assets/img/facesheet_pass')
+      &.print-btn
+        bg-image('./src/assets/img/facesheet_print')
+
+
+.backiconwhite
+  bg-image('./src/assets/img/back_white')
+  height 16px
+  width 40px
+  background-size auto 100%
+
+.caneclBtn
+  padding 8px 15px
+  font-size 14px
+  background white
+  border-radius 4px
+  border none
+  color #888888
+
+.down_state
+  display inline-block
+  bg-image('./src/assets/img/back_an')
+  padding 10px
+  background-size auto 80%
+  transform: rotate(90deg);
+
+/*模拟cell*/
+.home-cell
+  margin-left 30px
+  display flex
+  height 92px
+  flex-flow row nowrap
+  justify-content space-between
+  align-items center
+  position relative
+  &::after
+    content ""
+    width 100%
+    position absolute
+    bottom 0px
+    height: 1px;
+    border-top:1px solid #e8e8e8;
+    -webkit-transform: scaleY(.5);
+    transform:scaleY(.5);
+  .right_box
+    flex 1
+    padding-right 30px
+    padding-left 20px
+    position: relative!important;
+    input
+      border none
+      width 100%
+    .floatDiv
+      position absolute
+      box-sizing border-box
+      left 0px
+      right 30px
+      top 62px
+      max-height 300px
+      overflow-y auto
+      background #fff
+      border-radius 8px
+      padding 20px
+      z-index 9999
+      border:1px solid #ccc
+      box-shadow 20px 10px 20px #eee
+      display flex
+      flex-flow column nowrap
+      p
+        background #f5f5f5
+        padding 10px 20px
+        text-align left
+        font-size 24px
+       ul
+        flex 1
+         width 100%
+         display inline-block
+        li
+          padding 20px 0px
+          font-size 24px
+          text-align left
+          bd-d(#e8e8e8)
+          &:last-child
+            display none
+            border:none
+
+/*上传图片*/
+.upload_pic_box
+  clear both
+  display flex
+  flex-flow row wrap
+  justify-content flex-start
+  li
+    width 100px
+    height 100px
+    display flex
+    flex-flow row nowrap
+    justify-content center
+    align-items center
+    margin-right 20px
+    margin-top 20px
+    position relative
+    cite
+      position absolute
+      width 40px
+      height 40px
+      border-radius 50%
+      bg-image('./src/assets/img/close')
+      background-size cover
+      right -20px
+      top -20px
+    img
+      max-height 100px
+      max-width 100px
+    &.btn_add_pic
+      bg-image('./src/assets/img/facesheet_jia')
+      background-size cover
+
+
+
+/*进场离场效果*/
+.slide-enter-active,.slide-leave-active{
+  transition: all 0.3s
+}
+.slide-enter, .slide-leave-to{
+  transform: translate3d(100%, 0,0)
+}
+
+
+
+.vux-pop-out-enter-active,
+.vux-pop-out-leave-active,
+.vux-pop-in-enter-active,
+.vux-pop-in-leave-active {
+  will-change: transform;
+  transition: all 500ms;
+  height: 100%;
+  top: 0;
+  width: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  overflow hidden
+}
+.vux-pop-out-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0,0);
+}
+.vux-pop-out-leave-active {
+  opacity: 0;
+  transform: translate3d(100%, 0,0);
+}
+.vux-pop-in-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0,0);
+}
+.vux-pop-in-leave-active {
+  opacity: 0;
+  transform: translate3d(-100%, 0,0);
+}
+
+
+
