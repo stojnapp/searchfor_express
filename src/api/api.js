@@ -1,6 +1,6 @@
 /*静态常量*/
-// export const BASE_URL='https://appsys.sto.cn/'/*生产环境*/;
-export const BASE_URL='http://192.168.124.208:8080/';/*内网*/
+export const BASE_URL='https://appsys.sto.cn/'/*生产环境*/;
+// export const BASE_URL='http://192.168.124.208:8080/';/*内网*/
 // export const BASE_URL='http://222.72.44.130:19999/';/*对应外网测试*/
 
 

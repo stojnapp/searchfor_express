@@ -4,7 +4,8 @@ const axiosConfig = {
   retry: 4,
   retryDelay: 1000,
   timeout: 20000,
-  // withCredentials:true,
-  headers: {'Content-Type': 'application/json','isSKip':true,'appId':'app','source':APP_SOURCE,'clientType':APP_CLIENTTYPE},
+  withCredentials:true,
+  headers: {'Content-Type': 'application/json','source':APP_SOURCE,'clientType':APP_CLIENTTYPE},
+  // headers: {'Content-Type': 'application/json','isSKip':true,'appId':'app','source':APP_SOURCE,'clientType':APP_CLIENTTYPE},
 };
 export default axiosConfig

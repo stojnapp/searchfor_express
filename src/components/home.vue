@@ -3,11 +3,11 @@
       <div class="search_header">
         <Header closewhitestate bg="none" textColor="#fff" title="快件查询"></Header>
         <div class="flex-box">
-          <form @submit="searching">
+          <form @submit.prevent="searching">
             <input type="search" v-model="waybillNo" placeholder="请输入查询单号">
             <cite v-if="showhis" @click="waybillNo=''"></cite>
           </form>
-          <span @click.stop="scan"></span>
+          <!--<span @click.stop="scan"></span>-->
         </div>
       </div>
       <div class="main_box">
@@ -43,7 +43,7 @@
               </li>
             </ul>
           </div>
-          <div class="text_c text_999 f_24 pt_20" v-else>
+          <div class="text_c text_999 f_28" style="padding-top: 60px" v-else>
             暂无物流信息...
           </div>
         </div>
@@ -112,6 +112,18 @@
         this.showinfostate=false;
       },
 
+      /*历史记录去重*/
+      checkedRepeat(){
+        var back=true;
+        if(this.historylist.length){
+          let ishave=this.historylist.indexOf(this.waybillNo);
+          if(ishave>=0){
+            back=false;
+          }
+        }
+        return back;
+      },
+
       /*过滤物流状态*/
       getExpressState(value){
         /*收件,发件,到件,派件,第三方代收,签收,问题件,留仓件,发包,到包,发车,装车,到车*/
@@ -153,7 +165,23 @@
           })
       },
       searching(){
-        this.historylist.push(this.waybillNo)
+        if(!this.waybillNo.length){
+          this.$Tools.TestTost('单号不得为空!')
+          return false;
+        }
+
+        /*检测格式*/
+        let pattern=/^\d{12,}$/;
+        let ischecked=pattern.test(this.waybillNo);
+        if(!ischecked){
+          this.$Tools.TestTost('单号格式错误,请重新输入...')
+          return false
+        }
+
+        if(this.checkedRepeat()){
+          this.historylist.push(this.waybillNo)
+        }
+
         this.showinfo=null;
         this.$store.dispatch('checkExpress',this.waybillNo)
           .then(res=>{
@@ -180,7 +208,13 @@
   @import "~staticPath/css/theme.styl";
   @import "~staticPath/css/common.styl";
 .search_header
-  background linear-gradient(left, #FE7621 0%,#FFAE45 100%)
+  background: -moz-linear-gradient(right, #FE7621, #FFAE45);
+  background: -webkit-linear-gradient(right, #FE7621, #FFAE45);
+  background: -webkit-gradient(linear,right,from(#FE7621),to(#FFAE45));
+  background: -webkit-linear-gradient(right, #FE7621, #FFAE45);
+  background: -o-linear-gradient(right, #FE7621, #FFAE45);
+  background: linear-gradient(right, #FE7621, #FFAE45);
+  background-color: #FE7621;
   .flex-box
     display flex
     flex-flow nowrap row
